@@ -25,7 +25,6 @@ public class EmployeeController {
     @GetMapping("/employees")
     public String listEmployees(Model model) {
         log.debug("Entered listEmployees");
-        apiService.listEmployees();
 
         model.addAttribute("employees", apiService.listEmployees());
 
