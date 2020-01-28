@@ -2,12 +2,12 @@ package com.kkukielka.springrestclient.services;
 
 import com.kkukielka.api.domain.Employee;
 import com.kkukielka.api.domain.EmployeesData;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Component
+@Service
 public class ApiServiceImpl implements ApiService {
 
     private RestTemplate restTemplate;

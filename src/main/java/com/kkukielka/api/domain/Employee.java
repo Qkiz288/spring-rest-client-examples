@@ -7,34 +7,33 @@ import javax.annotation.Generated;
 @SuppressWarnings("unused")
 public class Employee {
 
-    private String employeeAge;
-    private String employeeName;
-    private String employeeSalary;
+    private String employee_age;
+    private String employee_name;
+    private String employee_salary;
     private String id;
-    private String profileImage;
 
-    public String getEmployeeAge() {
-        return employeeAge;
+    public String getEmployee_age() {
+        return employee_age;
     }
 
-    public void setEmployeeAge(String employeeAge) {
-        this.employeeAge = employeeAge;
+    public void setEmployee_age(String employee_age) {
+        this.employee_age = employee_age;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public String getEmployee_name() {
+        return employee_name;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
     }
 
-    public String getEmployeeSalary() {
-        return employeeSalary;
+    public String getEmployee_salary() {
+        return employee_salary;
     }
 
-    public void setEmployeeSalary(String employeeSalary) {
-        this.employeeSalary = employeeSalary;
+    public void setEmployee_salary(String employee_salary) {
+        this.employee_salary = employee_salary;
     }
 
     public String getId() {
@@ -43,14 +42,6 @@ public class Employee {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
     }
 
 }
