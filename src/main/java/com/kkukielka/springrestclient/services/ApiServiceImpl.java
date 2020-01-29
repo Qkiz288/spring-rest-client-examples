@@ -3,22 +3,27 @@ package com.kkukielka.springrestclient.services;
 import com.kkukielka.api.domain.Employee;
 import com.kkukielka.api.domain.EmployeesData;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 @Service
 public class ApiServiceImpl implements ApiService {
 
-    private final String employees_url;
+    @Value("${api.url.employees}")
+    private String employees_url;
+
+    @Value("${api.url.employee}")
+    private String employee_url;
 
     private RestTemplate restTemplate;
 
-    public ApiServiceImpl(RestTemplate restTemplate,
-                          @Value("${api.url.employees}") String employees_url) {
+    public ApiServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.employees_url = employees_url;
     }
 
     @Override
@@ -29,4 +34,19 @@ public class ApiServiceImpl implements ApiService {
 
         return employeeData.getData();
     }
+
+    @Override
+    public Mono<Employee> getEmployee(Mono<Integer> id) {
+
+
+        return WebClient.create(employee_url)
+                .get()
+                .uri(uriBuilder -> uriBuilder.path("").build(id.block()))
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .block()
+                .bodyToMono(Employee.class);
+    }
+
+
 }
