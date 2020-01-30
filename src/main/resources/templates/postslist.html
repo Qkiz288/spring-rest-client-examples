@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Employees</title>
+    <title>Posts</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -17,38 +17,38 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<!--/*@thymesVar id="employees" type="java.util.List"*/-->
-<!--/*@thymesVar id="employee" type="com.kkukielka.api.domain.Employee"*/-->
+<!--/*@thymesVar id="posts" type="java.util.List"*/-->
+<!--/*@thymesVar id="post" type="com.kkukielka.api.domain.Post"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
 
                 <div class="panel-heading">
-                    <h1 class="panel-title">Employees from API</h1>
+                    <h1 class="panel-title">Posts from API</h1>
                 </div>
                 <div class="panel-body">
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(employees)}">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(posts)}">
                         <table class="table table-hover ">
                             <thead class="thead-inverse">
                             <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Salary</th>
-                                <th>Id</th>
+                                <th>User ID</th>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Body</th>
                             </tr>
                             </thead>
                             <tr th:remove="all">
-                                <td>Joe</td>
-                                <td>30</td>
-                                <td>2000</td>
-                                <td>123</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>Fellowship of the Ring</td>
+                                <td>You all know Lord of the Rings, right?</td>
                             </tr>
-                            <tr th:each="employee : ${employees}">
-                                <td th:text="${employee.employee_name}">Joe</td>
-                                <td th:text="${employee.employee_age}">20</td>
-                                <td th:text="${employee.employee_salary}">1000</td>
-                                <td th:text="${employee.id}">321</td>
+                            <tr th:each="post : ${posts}">
+                                <td th:text="${post.userId}">Joe</td>
+                                <td th:text="${post.id}">20</td>
+                                <td th:text="${post.title}">1000</td>
+                                <td th:text="${post.body}">321</td>
                             </tr>
                         </table>
                     </div>

@@ -1,11 +1,12 @@
 package com.kkukielka.springrestclient.services;
 
-import com.kkukielka.api.domain.Employee;
+import com.kkukielka.api.domain.Post;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -22,10 +23,21 @@ public class ApiServiceImplTest {
     public void listUsers() {
 
         // when
-        List<Employee> employees = apiService.listEmployees();
+        List<Post> employees = apiService.listPosts();
 
         // then
         assertNotNull(employees);
         assertFalse(employees.isEmpty());
+    }
+
+    @Test
+    public void getEmployee() {
+
+        Post employeeMono = apiService.getPost(Mono.just(Integer.valueOf(1))).block();
+
+        assertNotNull(employeeMono.getUserId().equals(1));
+        assertNotNull(employeeMono.getId().equals(1));
+        assertNotNull(employeeMono.getTitle());
+        assertNotNull(employeeMono.getBody());
     }
 }
