@@ -11,7 +11,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class EmployeeControllerTest {
+public class PostControllerTest {
 
     @Autowired
     ApplicationContext context;
@@ -33,11 +33,18 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void listEmployees() {
+    public void listPosts() {
 
-        webTestClient.get().uri("/employees")
+        webTestClient.get().uri("/posts")
                 .exchange()
                 .expectStatus().isOk();
 
+    }
+
+    @Test
+    public void getPost() {
+        webTestClient.get().uri("/posts/1")
+                .exchange()
+                .expectStatus().isOk();
     }
 }

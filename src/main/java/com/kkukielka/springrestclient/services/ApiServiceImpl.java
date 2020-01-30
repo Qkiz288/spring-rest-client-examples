@@ -1,7 +1,7 @@
 package com.kkukielka.springrestclient.services;
 
-import com.kkukielka.api.domain.Employee;
-import com.kkukielka.api.domain.EmployeesData;
+import com.kkukielka.api.domain.Post;
+import com.kkukielka.api.domain.PostsData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,11 @@ import java.util.List;
 @Service
 public class ApiServiceImpl implements ApiService {
 
-    @Value("${api.url.employees}")
-    private String employees_url;
+    @Value("${api.url.posts}")
+    private String posts_url;
 
-    @Value("${api.url.employee}")
-    private String employee_url;
+    @Value("${api.url.post}")
+    private String post_url;
 
     private RestTemplate restTemplate;
 
@@ -27,25 +27,23 @@ public class ApiServiceImpl implements ApiService {
     }
 
     @Override
-    public List<Employee> listEmployees() {
+    public List<Post> listPosts() {
 
-        EmployeesData employeeData = restTemplate
-                .getForObject(employees_url, EmployeesData.class);
+        List<Post> postsData = restTemplate
+                .getForObject(posts_url, List.class);
 
-        return employeeData.getData();
+        return postsData;
     }
 
     @Override
-    public Mono<Employee> getEmployee(Mono<Integer> id) {
+    public Mono<Post> getPost(Mono<Integer> id) {
 
-
-        return WebClient.create(employee_url)
+        return WebClient.create(post_url)
                 .get()
                 .uri(uriBuilder -> uriBuilder.path("").build(id.block()))
                 .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-                .block()
-                .bodyToMono(Employee.class);
+                .retrieve()
+                .bodyToMono(Post.class);
     }
 
 

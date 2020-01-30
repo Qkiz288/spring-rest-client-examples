@@ -1,6 +1,6 @@
 package com.kkukielka.springrestclient.services;
 
-import com.kkukielka.api.domain.Employee;
+import com.kkukielka.api.domain.Post;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class ApiServiceImplTest {
     public void listUsers() {
 
         // when
-        List<Employee> employees = apiService.listEmployees();
+        List<Post> employees = apiService.listPosts();
 
         // then
         assertNotNull(employees);
@@ -33,8 +33,11 @@ public class ApiServiceImplTest {
     @Test
     public void getEmployee() {
 
-        Employee employeeMono = apiService.getEmployee(Mono.just(Integer.valueOf(1))).block();
+        Post employeeMono = apiService.getPost(Mono.just(Integer.valueOf(1))).block();
 
-        assertNotNull(employeeMono);
+        assertNotNull(employeeMono.getUserId().equals(1));
+        assertNotNull(employeeMono.getId().equals(1));
+        assertNotNull(employeeMono.getTitle());
+        assertNotNull(employeeMono.getBody());
     }
 }
